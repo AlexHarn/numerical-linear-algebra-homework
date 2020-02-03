@@ -1,5 +1,6 @@
 all: build/homework.pdf
-	cp build/homework.pdf hw<+number+>_submission.pdf
+	cp build/homework.pdf homework.pdf
+	cp build/homework.pdf ../hw<+number+>_submission.pdf
 
 TeXOptions = -pdf \
 			 -interaction=nonstopmode \
