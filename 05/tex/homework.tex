@@ -132,4 +132,31 @@ See the following handwritten page.
 \subsection*{(c)}
 You can find the code in the file \textit{hilbert.py}.
 
+\subsection*{(d)}
+Figure~\ref{fig:result} shows the distance between the true and recovered
+solution with $n=10$, $n=20$ and $n=30$ for different values of $\alpha$
+between $10^{-15}$ and $1$. With $\alpha = 0$ we get 
+\begin{align}
+  \begin{split}
+    n = 10:\quad\left\Vert x_\textup{True} - x_\textup{Solved}\right\Vert &= 0.002035339815873455, \\
+    n = 20:\quad\left\Vert x_\textup{True} - x_\textup{Solved}\right\Vert &= 292.0636304336893, \\
+    n = 30:\quad\left\Vert x_\textup{True} - x_\textup{Solved}\right\Vert &= 790.038304403896\,. \\
+  \end{split}
+\end{align}
+These poor solutions without regularization are a direct result of the
+ill-conditioned nature of the Hilbert matrices.
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{../code/hw05_3.pdf}
+  \caption{2-norm between the true and recovered solution with $n=10$, $n=20$
+  and $n=30$ for different values of $\alpha$ between $10^{-15}$ and $1$.}
+  \label{fig:result}
+\end{figure}
+
+\subsection*{(e)}
+As evident by Figure~\ref{fig:result}, it seems like the best choice for alpha here is
+\begin{equation}
+  \alpha \approx 10^{-10}\,.
+\end{equation}
+
 \end{document}
