@@ -1,0 +1,9 @@
+Linear regression results for rho against m:
+Slope: 0.2184962813993267
+Intercept: 13.10790963034686
+Standard error: 0.015655563632032854
+
+Linear regression results for 2-norm against m:
+Slope: 1.6803024816936785
+Intercept: 4.478989087812295
+Standard error: 0.003926849556861346
