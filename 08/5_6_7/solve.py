@@ -90,3 +90,26 @@ def gaussian_elimination_no_pivoting(A, b):
     A = np.append(A, np.expand_dims(b, axis=1), axis=1)
     lu_factorize_inplace(A)
     return back_substitute(A[:, :-1], A[:, -1])
+
+
+def cholesky_factorize(A):
+    """
+    Computes the Cholesky A=R*R decomposition of A where R is upper-triangular.
+
+    This is an implementation of Algorithm 23.1.
+
+    Parameters
+    ----------
+    A : array_like
+        The matrix A.
+
+    Returns
+    -------
+    The upper-triangular matrix R.
+    """
+    R = np.triu(A)
+    for k in range(len(A)):
+        for j in range(k + 1, len(A)):
+            R[j, j:] -= R[k, j:]*R[k, j]/R[k, k]
+        R[k, k:] /= np.sqrt(R[k, k])
+    return R
