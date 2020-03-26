@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.linalg import expm
 
 import matplotlib.pyplot as plt
 from pylab import rcParams
@@ -7,19 +8,32 @@ rcParams['figure.figsize'] = 10, 5
 rcParams['font.family'] = 'serif'
 rcParams['font.size'] = 15
 
-for i in range(10):
+for i in range(50):
     A = np.random.normal(size=(10, 10)) - 2*np.identity(10)
-    alpha = np.max(np.real(np.linalg.eigvals(A)))
+    eigvals = np.linalg.eigvals(A)
+    alpha = np.max(np.real(eigvals))
+    # if abs(alpha) > 0.1:
+        # continue
 
-    t = np.linspace(0, 20)
-    y = np.linalg.norm(np.exp(t[:, None, None]*A[None, :, :]), axis=(1, 2))
-    eta = np.exp(t*alpha)
+    ts = np.linspace(0, 20)
+    y = []
+    for t in ts:
+        y.append(np.linalg.norm(expm(t*A)))
+    y = np.asarray(y)
+    eta = np.exp(ts*alpha)
 
-    plt.semilogy(t, y, label=r'$\Vert \exp(tA)\Vert_2$')
-    plt.semilogy(t, eta, label=r'$\exp(t\alpha(A))$')
+    plt.semilogy(ts, y, '.', label=r'$\Vert \exp(tA)\Vert_2$')
+    plt.semilogy(ts, eta, '.', label=r'$\exp(t\alpha(A))$')
     plt.legend()
     plt.xlim(0, 20)
     plt.xlabel(r'$t$')
+    # print()
+    # print(np.sum(np.real(eigvals)))
+    # print(np.sum(np.imag(eigvals)))
+    # print(alpha)
+    # print(np.diagonal(A))
+    # print(A)
+
     # plt.show()
     plt.savefig(str(i)+'.pdf')
     plt.clf()
