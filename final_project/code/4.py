@@ -55,21 +55,24 @@ def shifted_power(A, sigma, eps=np.finfo(float).eps):
 ews = []
 hs = []
 for n in range(4, 10):
+    print("n = {}".format(n))
     N = 2**n
     h = np.pi/N
     A = construct_A(N, h, p, q)
     hs.append(h)
-    # we want to find the smallest ew of A and we know the shifted power method
-    # finds the ew furthest away from mu, so a good choice for mu might be the
-    # norm of A which is the largest singular value.
-    ews.append(shifted_power(A, p*(N - 0.5)**2, eps=1e-6))
+    # we want to find the smallest eigenvalue, so the ideal shift should be as
+    # close as possible to the largest eigenvalue, so let's find that one first
+    lam_max = shifted_power(A, 0)
+    print(lam_max)
+    # and now use it as a shift to find the smallest
+    ews.append(shifted_power(A, lam_max))
     print(ews[-1])
+    print("")
 
 ews = np.asarray(ews)
 plt.plot(hs, np.abs(ews - ew_min)/hs)
 plt.plot(hs, np.abs(ews - ew_min)/hs, 'x')
 plt.xlabel(r'$h$')
 plt.ylabel(r'$\frac{\lambda^h_{\mathrm{min}} - \lambda_{\mathrm{min}}}{h}$')
-# plt.show()
 plt.tight_layout()
 plt.savefig('4.pdf')

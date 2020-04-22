@@ -39,9 +39,6 @@ def inverse_iteration(A, mu, eps=np.finfo(float).eps):
 
     while np.abs(new_lam - old_lam) > eps:
         old_lam = new_lam
-        # I could also use my implementation from previous homework, I'll keep
-        # it simple though by using numpies solver, the assignment does not ask
-        # that we implement every sub-algorithm by hand:
         w = np.linalg.solve(B, v)
         v = w/np.linalg.norm(w)
         new_lam = v.T@A@v
@@ -75,6 +72,5 @@ plt.plot(hs, np.abs(ews - ew_min)/hs)
 plt.plot(hs, np.abs(ews - ew_min)/hs, 'x')
 plt.xlabel(r'$h$')
 plt.ylabel(r'$\frac{\lambda^h_{\mathrm{min}} - \lambda_{\mathrm{min}}}{h}$')
-# plt.show()
 plt.tight_layout()
 plt.savefig('3.pdf')
