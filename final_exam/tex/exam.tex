@@ -59,7 +59,7 @@ Additionally, we have
   \label{2}
 \end{equation}
 Combining these results with the definition of the induced matrix
-norm~\cite[(3.6)]{tb}, we find the inequality:
+norm~\cite[(3.6)]{tb}, we find the inequality
 \begin{equation*}
   \Vert A \Vert_\infty = \sup_{x \in \mathbb{C}^n,\,x \neq 0} \frac{\Vert Ax
   \Vert_\infty}{\Vert x \Vert_\infty} \stackrel{\eqref{2}}{\leq}
@@ -67,7 +67,7 @@ norm~\cite[(3.6)]{tb}, we find the inequality:
   \Vert_\infty}
   \stackrel{\eqref{1}}{\leq}
   \sup_{x \in \mathbb{C}^n,\,x \neq 0} \frac{\sqrt{n}\Vert Ax \Vert_2}{\Vert x
-  \Vert_2} = \sqrt{n} \Vert A \Vert_\infty
+  \Vert_2} = \sqrt{n} \Vert A \Vert_\infty.
 \end{equation*}
 \end{proof}
 
@@ -90,7 +90,8 @@ We also find the inequality
 \subsection*{(b)}
 The inequality~\eqref{eqn:a} is sharp.
 \begin{proof}
-  To show that the inequality is sharp, we only need to find an example for which equality holds. Such an example is:
+  To show that the inequality is sharp, it is sufficient to find an example for
+  which equality holds. Such an example is:
   \begin{equation*}
     M =
     \begin{bmatrix}
@@ -153,17 +154,19 @@ Let $A \in \mathbb{C}^{m \times m}$, and let $a_j$ be its $j$-th column. Then:
 
 \section*{Problem 4}
 \subsection*{(a)}
-The primary textbook does not mention an SVD theorem. It
-does, however, give a formal definition of the Singular Value
+The primary textbook gives a formal definition of the Singular Value
 decomposition~\cite[pp. 28-29]{tb}. The existence and uniqueness is stated and
 proven~\cite[Theorem 4.1]{tb}. A slide titled ``SVD: Theorem'' can be found
 in~\cite{slides}. It states, that
 \begin{enumerate}
   \item Every matrix $A \in \mathbb{C}^{m\times n}$ has an SVD.
   \item The singular values $\{\sigma_i\}$ are uniquely determined.
-  \item If $A \in \mathbb{C}^{m\times n}$ and the singular values $\sigma_i$ are distinct, then the left and right singular vectors $\{u_i\}$ and $\{v_i\}$ are uniquely determined up to complex signs (i.e. complex scalar factors of modulus 1).
+  \item If $A \in \mathbb{C}^{m\times n}$ and the singular values $\sigma_i$
+    are distinct, then the left and right singular vectors $\{u_i\}$ and
+    $\{v_i\}$ are uniquely determined up to complex signs (i.e. complex scalar
+    factors of modulus 1).
 \end{enumerate}
-This is the same as Theorem 4.1 from~\cite{tb}.
+This is the same as Theorem 4.1 in~\cite{tb}.
 
 \subsection*{(b)}
 Let $A \in \mathbb{C}^{m\times n}$. Set $\sigma = \Vert A\Vert_2$. There are
@@ -182,12 +185,27 @@ vectors $v \in \mathbb{C}^{n}$ and $u \in \mathbb{C}^m$ with $\Vert v\Vert_2 =
 This proof might be circular, depending on how the SVD theorem stated above has
 been proven. An alternative proof is the compactness argument of the induced 2
 norm used in the proof of Theorem 4.1 in \cite{tb}. This proof is also
-given in \cite{slides}:
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{./compactness_slide.png}
-  \caption{Proof of (b) given in \cite{slides}.}
-\end{figure}
+given in \cite{slides}. It goes as follows:
+
+\begin{proof}
+  By definition, we have
+  \begin{equation*}
+    \Vert A \Vert_2 = \sup_{\Vert y\Vert_2 = 1} \Vert Ay \Vert_2.
+  \end{equation*}
+  Since the function $\Vert Ay \Vert_2$ is continuous on the compact set $\{y
+  \in \mathbb{C}^n : \Vert y\Vert_2 = 1\}$, there exists $x \in \mathbb{C}^n$
+  with $\Vert x\Vert_2 = 1$, so that
+  \begin{equation*}
+    \Vert A \Vert_2 = \sup_{\Vert y\Vert_2 = 1} \Vert Ay\Vert_2 = \max_{\Vert
+    y\Vert_2 = 1} \Vert Ay\Vert_2 = \Vert Ax\Vert_2.
+  \end{equation*}
+  Let $v = x$ so that $\Vert v\Vert_2 = 1$. Let $z = Ax$. Define $u =
+  \frac{z}{\Vert z\Vert_2}$. Then
+  \begin{equation*}
+    \Vert z\Vert_2 = \sigma = \Vert A\Vert_2, \quad z = \sigma u.
+  \end{equation*}
+  Thus $Av = \sigma u$, where both $u$ and $v$ are normalized. 
+\end{proof}
 
 \subsection*{(c)}
 A reduced SVD of
@@ -220,8 +238,8 @@ To make it a full SVD, we only need to make the columns of $U$ a full basis of
 $\mathbb{R}^{3}$ by adding the column $(0, 1, 0)^{\top}$ and adding a row of zeros
 to $\Sigma$.
 
-Just as a short justification of the result: For this simple
-matrix I could come up with it in my head by knowing that $\Sigma$ is a
+Just as a brief justification of the result: For this simple
+matrix I could come up with the SVD in my head by knowing that $\Sigma$ is a
 diagonal matrix with the square roots of the eigenvalues of $A^\top A$
 on its diagonal~\cite[Theorem 5.4]{tb}.
 
